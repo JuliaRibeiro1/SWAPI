@@ -1,0 +1,98 @@
+/* Reset CSS básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    line-height: 1.6;
+    background-color: var(--background);
+    color: rgb(230, 230, 230);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style-type: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+h2 {
+    font-weight: 200;
+}
+
+:root {
+    /* Paleta de Cores */
+    --purple: #8c35c6a4; 
+    --dark-purple: #4A1F66;
+    --background: #151515; 
+    --text: rgb(230, 230, 230)
+}
+
+
+button {
+    color: var(--text)
+}
+
+/* Header */
+header, .watchListBtn {
+    background-color: var(--purple);
+    
+}
+header {
+    padding: 1em;
+}
+ul {
+    display: flex;
+    justify-content: space-between;
+}
+
+.main_movie_section {
+    background-size: 100%;
+    display: flex;
+    flex-direction: column;
+    gap:2em;
+    
+
+}
+.main_movie_section, .star {
+    background-repeat: no-repeat;
+}
+.watchListBtn {
+    background-color: var(--purple);
+    border: none;
+    padding: .5em;
+    max-width: 200px;
+    
+}
+
+
+.star {
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border: none;
+    background-repeat: no-repeat;
+    background-image: url(Assets/star.png);
+}
+
+.star:hover {
+
+}
+
+
+
+

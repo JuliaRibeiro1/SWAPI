@@ -6,27 +6,27 @@ const moviesImages = [
     },
     {
         id: "5", 
-        img: "./Assets/aNewHope.webp"
+        img: "./Assets/theEmpireStrikesBack.jpg"
         
     },
     {
         id: "6", 
-        img: "./Assets/aNewHope.webp"
+        img: "./Assets/returnOfTheJedi.webp"
         
     },
     {
         id: "1", 
-        img: "./Assets/aNewHope.webp"
+        img: "./Assets/thePhantomMenace.jpeg"
         
     },
     {
         id: "2", 
-        img: "./Assets/aNewHope.webp"
+        img: "./Assets/attackOfTheClones.jpeg"
         
     },
     {
         id: "3", 
-        img: "./Assets/aNewHope.webp"
+        img: "./Assets/revengeOfTheSith.webp"
         
     }
 

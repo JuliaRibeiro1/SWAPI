@@ -1,3 +1,5 @@
+let rating_container;
+
 function rating() {
     let ratingArr = []
     for(let i = 0; i < 5; i++) {
@@ -12,4 +14,13 @@ function rating() {
     
 }
 
-export default rating
+export function appendRating() {
+    rating_container = document.querySelector(".rating_container");
+    const stars = rating();
+    stars.forEach(star => {
+        return rating_container.appendChild(star);
+});
+}
+
+
+

@@ -1,52 +1,3 @@
-/* Reset CSS básico */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html, body {
-    height: 100%;
-    font-family: Arial, sans-serif;
-}
-
-body {
-    line-height: 1.6;
-    background-color: var(--background);
-    color: rgb(230, 230, 230);
-    overflow-x: hidden;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-ul {
-    list-style-type: none;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-h2 {
-    font-weight: 200;
-}
-
-:root {
-    /* Paleta de Cores */
-    --purple: #8c35c667; 
-    --dark-purple: #4A1F66;
-    --background: #151515; 
-    --text: rgb(230, 230, 230)
-}
-
-
-button {
-    color: var(--text)
-}
 
 /* Header */
 header, .watchListBtn {
@@ -129,22 +80,7 @@ h3 {
     background-repeat: no-repeat;
 }
 
-.watchListBtn {
-    background-color: var(--purple);
-    border: none;
-    padding: .5em;
-    width: 100px
-    
-}
 
-.star {
-    width: 20px;
-    height: 20px;
-    background-color: transparent;
-    border: none;
-    background-repeat: no-repeat;
-    background-image: url(Assets/star.png);
-}
 
 .star:hover {
 

@@ -1,0 +1,36 @@
+.main_movie_section {
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    gap:.5em;  
+    min-height: 500px ;
+    position: relative;
+    justify-content: flex-end;
+    padding: 2em;
+
+}
+
+.director_producer_section {
+    display: flex;
+    text-align: center;
+    justify-content: space-evenly;
+ 
+}
+
+.movie_summary_section {
+    padding-top: 0;
+}
+
+h3 {
+    
+    margin-bottom: 1em;
+}
+
+.episode_container {
+    padding-left: 1.5em;
+    padding-top: 1em;
+}
+
+
+

@@ -1,11 +1,13 @@
-async function fetchData(category, id = "") {
+async function fetchData(url, id = "") {
     try {
-        const response = await fetch(`https://swapi.dev/api/${category}/${id}`);
+        const response = await fetch(url);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
+     
         return data 
+        
     } catch (error) {
         console.error('Fetch error:', error);
     }

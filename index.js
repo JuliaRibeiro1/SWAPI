@@ -1,84 +1,58 @@
-import fetchData from "./fetch.js";
-import moviesImages from "./movieImagesData.js";
+
 import addBtnClass from "./Utils/addBtnClass.js";
-import rating from "./Utils/rating.js";
+import findMovie from "./Utils/findMovie.js";
+import { updateMovieImg } from "./Utils/movieImage.js";
+import { appendRating } from "./Utils/rating.js";
+import {storeData} from "./Utils/storeData.js"
 
-let nameMovie = document.querySelector("#movie_name");
-let release_date = document.querySelector("#release_date");
-let main_movie_section = document.querySelector(".main_movie_section");
-let rating_container = document.querySelector(".rating_container");
-let movies_carousel = document.querySelector(".movies_carousel");
 
-function findMovieImg(episodeId) {
-    let movie = moviesImages.find(movie => movie.id === episodeId);
-    
-    return movie.img ; // Garantir que `movie` não seja `undefined`
-}
+const nameMovie = document.querySelector("#movie_name");
+const release_date = document.querySelector("#release_date");
+const main_movie_section = document.querySelector(".main_movie_section");
+const movies_carousel = document.querySelector(".movies_carousel");
 
-async function updateMovie(category, episode_id) {
-    let nameMovie = document.querySelector("#movie_name");
 
-    try {
-        // Await the result of fetchData
-        let data = await fetchData("films", "1");
-        main_movie_section.style.backgroundImage = `url(${findMovieImg(episode_id)})`;
+function updateMovie(movies, id) {
+    const currentMovie = findMovie(movies, id);
+    if (currentMovie) {
+        updateMovieImg(main_movie_section, id);
+        nameMovie.textContent = currentMovie.title;
+        release_date.textContent = currentMovie.release_date;
 
-        if (data) {
-     
-            nameMovie.textContent = data.title;
-            release_date.textContent = data.release_date;
-        } else {
-            console.error('No title found in data');
-        }
-    } catch (error) {
-        console.error('Error updating movie:', error);
-    }
-}
-
-function sortMoviesByReleaseDate(movies) {
-    return movies.results.sort((a, b) => new Date(a.release_date) - new Date(b.release_date));
-}
-
-async function displayMovies() {
-    try {
-        const data = await fetchData("films");
-        const sortedMovies = sortMoviesByReleaseDate(data);
-        const fragment = document.createDocumentFragment();
-
-        // Exemplo de exibição de filmes no console
-        sortedMovies.map(item => {
-            console.log(item);
-            let movie = document.createElement("div");
-            movie.className = "movie";
-            movie.style.backgroundImage = `url(${findMovieImg(4)})`;
-    
-            movie.innerHTML = `
-                <h4>${item.title}</h4>
-                <h5>${item.release_date}</h5>`;
-            
-            // Adiciona cada filme ao fragmento
-            fragment.appendChild(movie);
+        main_movie_section.addEventListener("click", () => {
+            window.location.href = `movieDetails.html?id=${id}`;
         });
-
-        // Adiciona o fragmento ao DOM
-        movies_carousel.appendChild(fragment);
-
-    } catch (error) {
-        console.error('Erro ao buscar filmes:', error);
+    } else {
+        console.error('Filme não encontrado.');
     }
 }
 
-// Chame displayMovies para exibir os filmes
-displayMovies();
+function displayMovies(movies) {
+    console.log(movies)   
+     const sortedMovies = movies.results.sort((a, b) => new Date(a.release_date) - new Date(b.release_date));
+    const fragment = document.createDocumentFragment();
 
-// Certifique-se de fornecer os parâmetros necessários para updateMovie
-updateMovie("films", "1"); // Exemplo, substitua "1" pelo ID do filme desejado
+    sortedMovies.forEach(item => {
+        const movieElement = document.createElement("div");
+        movieElement.className = "movie";
+        updateMovieImg(movieElement, item.episode_id);
+        movieElement.innerHTML = `
+            <h4>${item.title}</h4>
+            <h5>${item.release_date}</h5>`;
 
-// Adiciona as estrelas ao container
-const stars = rating();
-stars.forEach(star => {
-    rating_container.appendChild(star);
-});
+        movieElement.addEventListener("click", () => updateMovie(movies,item.episode_id));
+        fragment.appendChild(movieElement);
+    });
 
-// Adiciona classe aos botões
-addBtnClass("main_movie_section");
+    movies_carousel.appendChild(fragment);
+}
+
+(async () => {
+    const movies = await storeData();
+    if (movies) {
+        updateMovie(movies,4);
+        displayMovies(movies);
+    }
+    appendRating();
+    addBtnClass("main_movie_section");
+})();
